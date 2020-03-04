@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 .wrapper {
   display: flex;
 }
@@ -45,13 +49,14 @@
   height: 91px;
   width: 260px;
   margin: 0 auto;
-  color: #ffffff;
   &__name {
+    color: #ffffff;
     font-size: 15px;
     padding-top: 20px;
     margin-bottom: 5px;
   }
   &__message {
+    color: #ffffff;
     font-size: 11px;
   }
 }
