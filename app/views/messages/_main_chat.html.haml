@@ -2,25 +2,22 @@
   .main-chat__group-info
     .group-sammary
       .group-sammary__name
-        TECH CAMP
+        = @group.name
       .group-sammary__member
-        Member：Naoki
+        Member：
+        - @group.users.each do |user|
+          = user.name 
     .group-edit
-      Edit
+      = link_to "Edit", edit_group_path(@group.id)
   .main-chat__message-list
-    .message-box
-      .message-box__contributor
-        Naoki
-      .message-box__time
-        2020/03/03(Tue) 16:29:59
-    .message-content
-      Create Chatspace!
+    .messages
+      = render @messages
   .main-chat__message-form
-    .form-box
-      %input{type: "text",class: "form-box__text", placeholder: "type a message"}
-      %label{class: "form-box__icon"}
-        = icon('far', 'image')
-        %input{type: "file", class: "form-box__icon_file", style: "display:none"}
-    %input{type: "submit", class: "form-send", value: "Send"}
-
-      -# style: "display:none;"
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: "input-box__text", placeholder: "type a message"
+        .form__mask
+          = f.label :image, class: "input-box__image" do
+            = icon('far', 'image', class: 'icon')
+            = f.file_field :image, class: "file", style: "display:none"
+        = f.submit "Send", class: "submit-btn"
